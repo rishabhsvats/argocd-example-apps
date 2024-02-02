@@ -18,13 +18,3 @@ spec:
         name: guestbook-ui
         ports:
         - containerPort: 80
-  triggers:
-  - type: ConfigChange 
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - guestbook-ui
-      from:
-        kind: ImageStreamTag
-        name: ks-guestbook-demo:latest
-    type: ImageChange
