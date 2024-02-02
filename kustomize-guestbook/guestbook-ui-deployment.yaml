@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guestbook-ui
-  creationTimestamp: "2024-01-17T07:59:12Z"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -19,3 +18,13 @@ spec:
         name: guestbook-ui
         ports:
         - containerPort: 80
+  triggers:
+  - type: ConfigChange 
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - guestbook-ui
+      from:
+        kind: ImageStreamTag
+        name: ks-guestbook-demo:latest
+    type: ImageChange
